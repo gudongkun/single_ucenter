@@ -1,0 +1,3 @@
+[submodule "enlight_ucenter_client"]
+	path = enlight_ucenter_client
+	url = git@github.com:gudongkun/enlight_ucenter_client.git
