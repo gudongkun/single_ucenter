@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package enlight.service.ucenter;
 
-option go_package ="go/src/github.com/gudongkun/single_ucenter/enlight_ucenter_client/user_proto";
+option go_package ="go/src/github.com/gudongkun/single_ucenter/enlight_ucenter_client/proto/user";
 
 service User {
 	rpc GetName(UserId) returns (UserName) {}
@@ -23,5 +23,14 @@ message UserAge {
 }
 message UserSex {
 	string Sex = 1;
+}
+
+message Event {
+	// unique id
+	string id = 1;
+	// unix timestamp
+	int64 timestamp = 2;
+	// message
+	string message = 3;
 }
 
