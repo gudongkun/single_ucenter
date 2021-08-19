@@ -1,12 +1,14 @@
 package enlight_ucenter_client
 
 import (
+	"github.com/gudongkun/single_ucenter/common/jaeger_log"
 	"github.com/gudongkun/single_ucenter/enlight_ucenter_client/proto/user"
 	"github.com/micro/go-micro/v2"
 	"github.com/micro/go-micro/v2/registry"
 	"github.com/micro/go-plugins/broker/mqtt/v2"
 	_ "github.com/micro/go-plugins/broker/mqtt/v2"
 	"github.com/micro/go-plugins/registry/consul/v2"
+	"github.com/micro/go-plugins/wrapper/monitoring/prometheus/v2"
 	wrapperTrace "github.com/micro/go-plugins/wrapper/trace/opentracing/v2"
 	"github.com/opentracing/opentracing-go"
 )
@@ -51,7 +53,11 @@ func InitService(serviceName string) {
 		}),
 		),
 		micro.Broker(mqtt.NewBroker()), //实例化mqtt broker代理
-		micro.WrapHandler(wrapperTrace.NewHandlerWrapper(opentracing.GlobalTracer())),
+		micro.WrapHandler(
+			wrapperTrace.NewHandlerWrapper(opentracing.GlobalTracer()),
+			prometheus.NewHandlerWrapper(),
+			jaeger_log.NewLogWrapper,
+		),
 	)
 
 	//默认注册中心

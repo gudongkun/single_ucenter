@@ -1,10 +1,9 @@
-package common
+package jaeger
 
 import (
 	"github.com/opentracing/opentracing-go"
 	"github.com/uber/jaeger-client-go"
 	jaegercfg "github.com/uber/jaeger-client-go/config"
-
 	"io"
 	"time"
 )
@@ -37,3 +36,6 @@ func NewJaegerTracer(serviceName string, addr string) (opentracing.Tracer, io.Cl
 
 	return tracer, closer, err
 }
+
+
+ 
