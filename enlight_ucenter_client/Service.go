@@ -1,7 +1,7 @@
 package enlight_ucenter_client
 
 import (
-	"github.com/gudongkun/single_ucenter/common/jaeger_log"
+	"github.com/gudongkun/single_common/jaeger_log"
 	"github.com/gudongkun/single_ucenter/enlight_ucenter_client/proto/user"
 	"github.com/micro/go-micro/v2"
 	"github.com/micro/go-micro/v2/registry"

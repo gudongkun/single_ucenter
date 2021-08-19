@@ -1,55 +1,13 @@
-# Hello Service
+## single u center service
 
-This is the Hello service
-
-Generated with
-
-```
-micro new --namespace=go.micro --type=service hello
-```
-
-## Getting Started
-
-- [Configuration](#configuration)
-- [Dependencies](#dependencies)
-- [Usage](#usage)
-
-## Configuration
-
-- FQDN: go.micro.service.hello
-- Type: service
-- Alias: hello
-
-## Dependencies
-
-Micro services depend on service discovery. The default is multicast DNS, a zeroconf system.
-
-In the event you need a resilient multi-host setup we recommend etcd.
-
-```
-# install etcd
-brew install etcd
-
-# run etcd
-etcd
-```
-
-## Usage
-
-A Makefile is included for convenience
-
-Build the binary
-
-```
-make build
-```
-
-Run the service
-```
-./hello-service
-```
-
-Build a docker image
-```
-make docker
-```
+###已经完成 ：
+1. 消息队列broker引入
+2. gomicro自动日志。
+3. 分布式日志
+4. 项目私有化
+5. xorm日志入jeager
+6. prometheus监控
+###待完成：
+1. gin网关
+2. jwt 
+3. 角色管理 Casbin 

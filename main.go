@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/gudongkun/single_ucenter/common"
-	"github.com/gudongkun/single_ucenter/common/jaeger"
+	"github.com/gudongkun/single_common"
+	"github.com/gudongkun/single_common/jaeger"
+	"github.com/gudongkun/single_common/custom_xorm"
 	"github.com/gudongkun/single_ucenter/enlight_ucenter_client"
 	"github.com/gudongkun/single_ucenter/enlight_ucenter_client/proto/user"
 	"github.com/gudongkun/single_ucenter/handler"
@@ -13,6 +14,7 @@ import (
 
 func main() {
 	//初始化 用户服务
+	custom_xorm.InitEngine( "root:123456@(localhost:3306)/single?charset=utf8mb4")
 	jaeger.NewJaegerTracer("single.enlight.ucenter", "127.0.0.1:6831")
 	enlight_ucenter_client.InitService("single.enlight.ucenter")
 	enlight_ucenter_client.UCenterService.Init()
@@ -33,7 +35,7 @@ func main() {
 
 
 	// broker方式 注册消息处理结束
-	go common.PrometheusBoot(8050)
+	go single_common.PrometheusBoot(8050)
 	// Run service
 	if err := enlight_ucenter_client.UCenterService.Run(); err != nil {
 		log.Fatal(err)

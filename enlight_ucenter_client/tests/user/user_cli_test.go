@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/gudongkun/single_ucenter/common/jaeger"
+	"github.com/gudongkun/single_common/jaeger"
 	"github.com/gudongkun/single_ucenter/enlight_ucenter_client"
 	"github.com/gudongkun/single_ucenter/enlight_ucenter_client/client/user"
 	wrapperTrace "github.com/micro/go-plugins/wrapper/trace/opentracing/v2"
