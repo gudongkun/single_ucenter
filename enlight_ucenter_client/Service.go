@@ -15,7 +15,7 @@ import (
 
 var (
 	UCenterService micro.Service
-	User           user.UserService
+	User           user.UserService //User user对象 只需要再客户端初始
 )
 
 //InitClient 初始化客户端
