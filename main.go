@@ -18,9 +18,9 @@ func main() {
 	//初始化xorm
 	//custom_xorm.InitEngine( "root:123456@(localhost:3306)/single?charset=utf8mb4")
 	//初始化jaeger
-	jaeger.NewJaegerTracer("single.enlight.ucenter", "127.0.0.1:6831")
+	jaeger.NewJaegerTracer("single_u_center_dev", "127.0.0.1:6831")
 	//初始化 用户服务
-	enlight_ucenter_client.InitService("single.enlight.ucenter")
+	enlight_ucenter_client.InitService("single_u_center_dev")
 	enlight_ucenter_client.UCenterService.Init()
 	// 注册服务处理程序
 	user.RegisterUserHandler(enlight_ucenter_client.UCenterService.Server(), new(handler.User))

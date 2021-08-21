@@ -5,12 +5,14 @@ import (
 	"github.com/gudongkun/single_common/custom_gorm"
 	"github.com/gudongkun/single_ucenter/enlight_ucenter_client/proto/user"
 	"github.com/gudongkun/single_ucenter/models"
+	log "github.com/micro/go-micro/v2/logger"
 )
 
 type User struct{}
 
 // GetName Call is a single request handler called via client.Call or the generated client code
 func (e *User) GetName(ctx context.Context, req *user.UserId, rsp *user.UserName) error {
+	log.Info("ctx", ctx)
 	rsp.Name = "周泽楷"
 	custom_gorm.Db(ctx).Create(&models.User{Name: "周泽楷"})
 	//log.Info("GetName", req)
