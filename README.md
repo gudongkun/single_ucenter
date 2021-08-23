@@ -21,4 +21,5 @@
 
 ### 特别注意
 
-jaeger 不支持，gin.context 要用 c:= ctx.Request.Context()获取原生context
+1. jaeger 不支持，gin.context 要用 c:= ctx.Request.Context()获取原生context
+2. casbin的文档地址：https://casbin.org/docs/en/rbac-api
