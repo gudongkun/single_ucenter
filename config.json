@@ -1,0 +1,9 @@
+{
+  "service": "single_u_center_dev",
+  "serviceAddr": ":8888",
+  "dsn":"root:123456@(localhost:3306)/single?charset=utf8mb4",
+  "casbinDsn":"root:123456@(localhost:3306)/",
+  "consul":"127.0.0.1:8500",
+  "jaeger":"127.0.0.1:6831",
+  "jwtSecret": "come through the dark and seeking the light"
+}

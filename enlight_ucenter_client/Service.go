@@ -19,13 +19,13 @@ var (
 )
 
 //InitClient 初始化客户端
-func InitClient(serviceName string) {
-	InitService(serviceName)
+func InitClient(serviceName,consulUrl string) {
+	InitService(serviceName,consulUrl,"")
 	User = user.NewUserService(serviceName, UCenterService.Client())
 }
 
 //InitService 初始话 service
-func InitService(serviceName string) {
+func InitService(serviceName,consulUrl,serviceAddr string) {
 	//jaegerTracer, closer, err := plugins.NewJaegerTracer(serviceName, "127.0.0.1:6831")
 	//if err != nil {
 	//	log.Fatal(err)
@@ -43,13 +43,14 @@ func InitService(serviceName string) {
 	// consul注册中心
 	UCenterService = micro.NewService(
 		micro.Name(serviceName),
+		micro.Address(serviceAddr),
 		micro.Version("latest"),
 		micro.Registry(consul.NewRegistry(func(op *registry.Options) {
 			//if op.Context == nil {
 			//	op.Context = context.Background()
 			//}
 			//op.Context = context.WithValue(op.Context, "consul_config", consulConf)
-			op.Addrs = []string{"127.0.0.1:8500"}
+			op.Addrs = []string{consulUrl}
 		}),
 		),
 		micro.Broker(mqtt.NewBroker()), //实例化mqtt broker代理

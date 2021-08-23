@@ -7,6 +7,7 @@ import (
 	"github.com/gudongkun/single_common/jaeger"
 	"github.com/gudongkun/single_ucenter/enlight_ucenter_client"
 	"github.com/gudongkun/single_ucenter/enlight_ucenter_client/proto/user"
+	"github.com/gudongkun/single_ucenter/global"
 	"github.com/gudongkun/single_ucenter/handler"
 	"github.com/gudongkun/single_ucenter/subscriber"
 	log "github.com/micro/go-micro/v2/logger"
@@ -14,13 +15,15 @@ import (
 
 func main() {
 	//初始化gorm
-	custom_gorm.InitEngine("root:123456@(localhost:3306)/single?charset=utf8mb4")
+	custom_gorm.InitEngine(global.Conf.Dsn)
+	//初始化casbin
+	global.InitCasbin(global.Conf.CasbinDsn)
 	//初始化xorm
 	//custom_xorm.InitEngine( "root:123456@(localhost:3306)/single?charset=utf8mb4")
 	//初始化jaeger
-	jaeger.NewJaegerTracer("single_u_center_dev", "127.0.0.1:6831")
+	jaeger.NewJaegerTracer(global.Conf.Service, global.Conf.Jaeger)
 	//初始化 用户服务
-	enlight_ucenter_client.InitService("single_u_center_dev")
+	enlight_ucenter_client.InitService(global.Conf.Service,global.Conf.Consul,global.Conf.ServiceAddr)
 	enlight_ucenter_client.UCenterService.Init()
 	// 注册服务处理程序
 	user.RegisterUserHandler(enlight_ucenter_client.UCenterService.Server(), new(handler.User))

@@ -26,7 +26,7 @@ func TestGetUser(t *testing.T) {
 	span3 :=opentracing.StartSpan("subService3",opentracing.ChildOf(span1.Context()))
 	span3.Finish()
 	// opentracing 处理逻辑结束
-	enlight_ucenter_client.InitClient("single.enlight.ucenter")
+	enlight_ucenter_client.InitClient("single.enlight.ucenter","127.0.0.1:8500")
 	res, err := user.GetName(ctx2, 1)
 	if err != nil {
 		t.Error(res, err)
